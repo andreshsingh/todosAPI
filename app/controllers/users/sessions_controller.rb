@@ -3,6 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  respond_to :json
   # GET /resource/sign_in
   # def new
   #   super
@@ -10,7 +11,13 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-  #   super
+  #   respond_to do |format|  
+  #     format.html { super }  
+  #     format.json {  
+  #       warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")  
+  #       render :status => 200, :json => { :data =>  }  
+  #     }  
+  #   end  
   # end
 
   # DELETE /resource/sign_out
